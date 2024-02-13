@@ -1,5 +1,54 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<!-- Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -->
+
+
+<div>
+
+   <div class="mx-6 flex">
+      <div class="border-4 w-4/12 flex flex-col items-center">
+         <div class="flex flex-row">
+            <img class="basis-1/4 h-20" src="assets/github-mark.png" alt="Description of the image">
+            <img class="basis-3/4 h-20" src="assets/GitHub_Logo.png" alt="Description of the image">
+         </div>
+         <div class="mt-10">
+            <div *ngIf="userProfilePhotoUrl && userProfileName">
+               <img class="object-contain w-40 h-40 rounded-full overflow-hidden"  [src]="userProfilePhotoUrl" alt="Profile Photo">
+               <p class="text-xl font-bold text-stone-700 text-center py-4">{{ userProfileName }}</p>
+            </div>
+         </div>
+      </div>
+   
+      <div class="border-4 w-8/12">
+         <div class="flex justify-center py-4">
+            <div>
+               <input class="w-96" type="text" [(ngModel)]="username" placeholder="Enter GitHub Username">
+               <button class="fetchbutton w-40 h-10" (click)="fetchRepositories()">Search</button>
+            </div>
+         </div>
+         <div>
+            <ul class="py-4">
+               <div class="flex flex-row flex-wrap">
+                  <li class="reposlist basis-1/2 p-4" *ngFor="let repo of repositories">
+                     <div class="border-2 border-stone-500 min-h-28 p-2 rounded">
+                        <div>
+                           <h3 class="text-xl font-semibold text-blue-500">{{ repo.name }}</h3>
+                        </div>
+                        <div class="py-2">
+                           <p>{{ repo.description }}</p>
+                        </div>
+                        <div class="flex flex-wrap">
+                           <div *ngFor="let language of repo.languages" class="lang-tag rounded-3xl text-sm m-2 px-4 py-1">
+                              <p class="lang-text">{{ language }}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </li>  
+               </div>
+            </ul>
+         </div>
+      </div>
+      
+
+   </div>
+
+
 </div>
